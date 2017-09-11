@@ -4,6 +4,6 @@ const extractor = regex => string => {
 }
 
 export default {
-  url: extractor(/\/(\d+\.\d+\.\d+)\//),
+  url: extractor(/\/(\d+\.\d+\.\d+-?(alpha|beta|rc)?\.?\d*)\//),
   tag: extractor(/v(\d+\.\d+\.\d+)/)
 }
