@@ -9,7 +9,10 @@ export default class DocCheck extends React.Component {
   state = {}
 
   componentDidMount() {
-    this.setState({ version: extract.url(document.location.href) })
+    this.setState({
+      muted: isMuted(),
+      version: extract.url(document.location.href)
+    })
     getLatestVersion().then(latest => this.setState({ latest }))
   }
 
