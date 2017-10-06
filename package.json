@@ -1,6 +1,6 @@
 {
   "name": "redux-form-doc-version-checker",
-  "version": "1.0.5",
+  "version": "1.0.12",
   "description":
     "A widget to notify people if they are not reading the most recent docs.",
   "main": "dist/doc-check.cjs.js",
@@ -62,15 +62,15 @@
   "bundlesize": [
     {
       "path": "dist/doc-check.umd.min.js",
-      "threshold": "20kB"
+      "threshold": "40kB"
     },
     {
       "path": "dist/doc-check.es.js",
-      "threshold": "40kB"
+      "threshold": "80kB"
     },
     {
       "path": "dist/doc-check.cjs.js",
-      "threshold": "40kB"
+      "threshold": "80kB"
     }
   ],
   "dependencies": {

@@ -1,12 +1,13 @@
 // @flow
 import cookies from 'js-cookie'
 import extract from './extract'
+import semver from 'semver'
 
 const key = 'reduxFormLatestVersion'
 
-export default function getLatestVersion(force: boolean = false) {
+export default function getLatestVersion(current) {
   const fromCookie = cookies.get(key)
-  return !force && fromCookie
+  return fromCookie && semver.lt(current, fromCookie)
     ? Promise.resolve(fromCookie)
     : new Promise(resolve => {
         fetch(
