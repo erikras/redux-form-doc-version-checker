@@ -3,17 +3,23 @@ import styled from 'styled-components'
 import Icon from 'react-fontawesome'
 import getLatestVersion from './getLatestVersion'
 import extract from './extract'
+import semver from 'semver'
 import { isMuted, mute } from './mute'
 
 export default class DocCheck extends React.Component {
   state = {}
 
-  componentDidMount() {
+  async componentDidMount() {
+    const version = extract.url(document.location.href)
     this.setState({
       muted: isMuted(),
-      version: extract.url(document.location.href)
+      version
     })
-    getLatestVersion().then(latest => this.setState({ latest }))
+    let latest = await getLatestVersion()
+    if (semver.gt(version, latest)) {
+      latest = await getLatestVersion(true)
+    }
+    this.setState({ latest })
   }
 
   mute = event => {

@@ -1,11 +1,12 @@
+// @flow
 import cookies from 'js-cookie'
 import extract from './extract'
 
 const key = 'reduxFormLatestVersion'
 
-export default function getLatestVersion() {
+export default function getLatestVersion(force: boolean = false) {
   const fromCookie = cookies.get(key)
-  return fromCookie
+  return !force && fromCookie
     ? Promise.resolve(fromCookie)
     : new Promise(resolve => {
         fetch(
@@ -16,7 +17,10 @@ export default function getLatestVersion() {
               const latest = extract.tag(name)
               if (latest) {
                 resolve(latest)
-                cookies.set(key, latest, { expires: 0.04 /* 1 hour */, path: '/' })
+                cookies.set(key, latest, {
+                  expires: 0.04 /* 1 hour */,
+                  path: '/'
+                })
                 return true
               } else {
                 return false
