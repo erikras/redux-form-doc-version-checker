@@ -1,6 +1,6 @@
 {
   "name": "redux-form-doc-version-checker",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description":
     "A widget to notify people if they are not reading the most recent docs.",
   "main": "dist/doc-check.cjs.js",

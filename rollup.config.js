@@ -7,15 +7,11 @@ import replace from 'rollup-plugin-replace'
 
 const minify = process.env.MINIFY
 const format = process.env.FORMAT
-const es = format === 'es'
 const umd = format === 'umd'
-const cjs = format === 'cjs'
 
 let output
 
-if (es) {
-  output = { file: `dist/doc-check.es.js`, format: 'es' }
-} else if (umd) {
+if (umd) {
   if (minify) {
     output = {
       file: `dist/doc-check.umd.min.js`,
@@ -24,15 +20,13 @@ if (es) {
   } else {
     output = { file: `dist/doc-check.umd.js`, format: 'umd' }
   }
-} else if (cjs) {
-  output = { file: `dist/doc-check.cjs.js`, format: 'cjs' }
 } else if (format) {
   throw new Error(`invalid format specified: "${format}".`)
 } else {
   throw new Error('no format specified. --environment FORMAT:xxx')
 }
 
-const exports = es ? 'named' : 'default'
+const exports = 'default'
 
 export default {
   name: 'DocChecker',
