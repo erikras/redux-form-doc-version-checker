@@ -5,6 +5,11 @@ import getLatestVersion from './getLatestVersion'
 import extract from './extract'
 import { isMuted, mute } from './mute'
 
+const dropPatch = version => {
+  const [major,minor] = version.split('.')
+  return `${major}.${minor}`
+}
+
 export default class DocCheck extends React.Component {
   state = {}
 
@@ -27,7 +32,7 @@ export default class DocCheck extends React.Component {
 
   render() {
     const { latest, muted, version } = this.state
-    return latest && latest !== version && !muted ? (
+    return latest && dropPatch(latest) !== dropPatch(version) && !muted ? (
       <Fixed>
         <Container>
           <Close href="#close" onClick={this.mute}>
