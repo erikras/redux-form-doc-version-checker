@@ -64,6 +64,7 @@ const Fixed = styled.div`
   top: 4px;
   left: 0;
   right: 0;
+  z-index: 100;
 `
 
 const Container = styled.div`
